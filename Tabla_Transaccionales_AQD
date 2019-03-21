@@ -1,0 +1,82 @@
+gn_Staff_Member	
+
+"SELECT *
+FROM PAQD_Replica.AQD.gn_Staff_Member Replica
+where Replica.Created_On > convert(DATETIME, '2019-03-20 09:37:00')"
+
+
+oc_Occurrence	"SELECT *
+FROM PAQD_Replica.AQD.oc_Occurrence Replica
+where Replica.Registered_Date_Time > convert(DATETIME, '2019-03-20 09:37:00')"
+
+oc_Occurrence_Events	"select * from PAQD_Replica.AQD.oc_Occurrence_Events
+where Occurrence_No in (
+SELECT Occurrence_No
+FROM PAQD_Replica.AQD.oc_Occurrence Replica
+where Replica.Registered_Date_Time > convert(DATETIME, '2019-03-20 09:37:00'));"
+
+
+oc_Occurrence_Log	"select * 
+from PAQD_Replica.AQD.oc_Occurrence_Log replica
+where replica.Log_Time_Date_StamP > convert(DATETIME, '2019-03-20 09:37:00');"
+
+oc_Occurrence_Type_Classificat	"select * from PAQD_Replica.AQD.oc_Occurrence_Type_Classificat 
+where Occurrence_No in (
+SELECT Occurrence_No
+FROM PAQD_Replica.AQD.oc_Occurrence Replica
+where Replica.Registered_Date_Time > convert(DATETIME, '2019-03-20 09:37:00'));"
+
+oc_QOccurrence	"SELECT *
+FROM PAQD_Replica.AQD.oc_QOccurrence Replica
+where Replica.Registered_Date_Time > convert(DATETIME, '2019-03-20 09:37:00')"
+
+oc_QOccurrence_Events	"SELECT *
+FROM PAQD_Replica.AQD.oc_QOccurrence_Events
+where Field_Report_ID in 
+(SELECT Field_Report_ID
+FROM PAQD_Replica.AQD.oc_QOccurrence Replica
+where Replica.Registered_Date_Time > convert(DATETIME, '2019-03-20 09:37:00'))"
+
+
+oc_QOccurrence_Type	"SELECT *
+FROM PAQD_Replica.AQD.oc_QOccurrence_Type
+where Field_Report_ID in 
+(SELECT Field_Report_ID
+FROM PAQD_Replica.AQD.oc_QOccurrence Replica
+where Replica.Registered_Date_Time > convert(DATETIME, '2019-03-20 09:37:00'))"
+
+oc_Qoccurrence_Log	"SELECT *
+FROM PAQD_Replica.AQD.oc_Qoccurrence_Log replica
+where replica.Log_Time_Date_StamP > convert(DATETIME, '2019-03-20 09:37:00');"
+
+
+oc_Work_Request_Occurrence	"SELECT *
+FROM PAQD_Replica.AQD.oc_Work_Request_Occurrence
+where Occurrence_No in (
+SELECT Occurrence_No
+FROM PAQD_Replica.AQD.oc_Occurrence Replica
+where Replica.Registered_Date_Time > convert(DATETIME, '2019-03-20 09:37:00'));"
+
+
+qaoc_Action	"
+SELECT *
+FROM PAQD_Replica.AQD.qaoc_Action Replica
+where Replica.Registered_On > convert(DATETIME, '2019-03-20 09:37:00')"
+
+
+qaoc_Finding	"SELECT *
+FROM PAQD_Replica.AQD.qaoc_Finding Replica
+where Replica.Entered_On > convert(DATETIME, '2019-03-20 09:37:00')"
+
+qaoc_Finding_Cause	"SELECT *
+FROM PAQD_Replica.AQD.qaoc_Finding_Cause
+where Finding_No in (
+SELECT Finding_No
+FROM PAQD_Replica.AQD.qaoc_Finding Replica
+where Replica.Entered_On > convert(DATETIME, '2019-03-20 09:37:00'));"
+
+qaoc_Work_Request	"SELECT *
+FROM PAQD_Replica.AQD.qaoc_Work_Request
+EXCEPT
+SELECT *
+FROM PAQD.AQD.qaoc_Work_Request"
